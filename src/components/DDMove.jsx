@@ -12,7 +12,8 @@ class DDMove extends React.Component {
           <option value="read">Read</option>
           <option value="none">delete</option>
         </select>
-      </div>)
+      </div>
+    )
   }
 }
 

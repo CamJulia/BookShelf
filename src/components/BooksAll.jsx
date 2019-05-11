@@ -1,6 +1,5 @@
 import React from 'react';
 import BookSection from './BookSection';
-import ButtonAdd from './ButtonAdd';
 
 
 class BooksAll extends React.Component {
@@ -9,13 +8,12 @@ class BooksAll extends React.Component {
 
       <div className="list-books">
         <div className="list-books-title">
-          <h1>bookshelves</h1>
+          <h1>bookshelf</h1>
         </div>
         <div className="list-books-content">
-          <BookSection />
-          <BookSection />
-          <BookSection />
-          <ButtonAdd/>
+          <BookSection name="reading now"/>
+          <BookSection name="read already"/>
+          <BookSection name="to read soon"/>
         </div>
         </div>
         )}}

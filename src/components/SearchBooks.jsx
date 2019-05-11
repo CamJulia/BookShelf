@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchTerms from './SearchTerms'
 
 // Searchbar to search for title or author.
 
@@ -22,6 +23,7 @@ class SearchBooks extends React.Component {
 
         </div>
       </div>
+      <SearchTerms/>
       <div className="search-books-results">
         <ol className="books-grid"></ol>
       </div>
