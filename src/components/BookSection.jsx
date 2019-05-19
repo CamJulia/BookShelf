@@ -8,8 +8,10 @@ class BookSection extends React.Component {
         <h2 className="bookshelf-title">{this.props.name}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-            <BookInfo />
-            <BookInfo />
+          {this.props.books.map((book) => {
+            return <BookInfo key={book.id} book={book} />
+          })}
+            
           </ol>
         </div>
       </div>)
