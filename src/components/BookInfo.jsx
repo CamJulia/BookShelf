@@ -15,7 +15,7 @@ class BookInfo extends React.Component {
                 backgroundImage: `url(${this.props.book.imageLinks.thumbnail})`
               }}>
             </div>
-            <DDMove book={this.props.book} />
+            <DDMove updateBook={this.props.updateBook} book={this.props.book} />
           </div>
           <div className="book-title">{this.props.book.title}</div>
           <div className="book-authors">{this.props.book.authors}</div>

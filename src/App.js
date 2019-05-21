@@ -20,31 +20,44 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
-    console.log('++++ I mount!');
     BooksAPI.getAll().then(books => this.setState({ books }));
-  }
-
-  componentDidUpdate() {
-    console.log('==== I update!');
   }
 
   closeSearch = () => {
     this.setState({ showSearchPage: false });
   }
 
+  // updateBook = (book, shelf) => {
+  //   if (shelf === book.shelf) return;
+
+  //   BooksAPI.update(book, shelf)
+  //     .then(() => {
+  //       BooksAPI.getAll()
+  //         .then(books => this.setState({ books }))
+  //     });
+  // }
+
+  updateBook = async (book, shelf) => {
+    if (shelf === book.shelf) return;
+
+    await BooksAPI.update(book, shelf)
+
+    const books = await BooksAPI.getAll();
+    this.setState({ books });
+  }
 
   render() {
     console.log('>>>> I render, current state is: ', this.state)
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchBooks closeSearch={this.closeSearch} />
+          <SearchBooks updateBook={this.updateBook} closeSearch={this.closeSearch} />
         ) : (
             this.state.books.length ? (
-                <BooksAll books={this.state.books} />
-              )
-                :
-                (<p>loading...</p>)
+              <BooksAll updateBook={this.updateBook} books={this.state.books} />
+            )
+              :
+              (<p>loading...</p>)
           )
         }
         <div>
