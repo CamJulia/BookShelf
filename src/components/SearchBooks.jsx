@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchTerms from './SearchTerms';
+import { Link } from 'react-router-dom';
 
 
 class SearchBooks extends React.Component {
@@ -13,7 +14,7 @@ class SearchBooks extends React.Component {
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <button className="close-search" onClick={this.props.closeSearch}>Close</button>
+          <Link exact to='/'><button className="close-search" onClick={this.props.closeSearch}>Close</button></Link>
           <div className="search-books-input-wrapper">
             <input type="text" placeholder="Search by title or author" />
           </div>

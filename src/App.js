@@ -3,6 +3,8 @@ import './App.css'
 import SearchBooks from './components/SearchBooks';
 import BooksAll from './components/BooksAll.jsx';
 import * as BooksAPI from './BooksAPI';
+import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 class BooksApp extends React.Component {
   constructor() {
@@ -47,25 +49,26 @@ class BooksApp extends React.Component {
   }
 
   render() {
-    console.log('>>>> I render, current state is: ', this.state)
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchBooks updateBook={this.updateBook} closeSearch={this.closeSearch} />
-        ) : (
+          <Route exact path='/add' render={() => (
+            <SearchBooks updateBook={this.updateBook} closeSearch={this.closeSearch} />
+          )} />) : (
             this.state.books.length ? (
-              <BooksAll updateBook={this.updateBook} books={this.state.books} />
-            )
+              <Route exact path='/' render={() => (
+                <BooksAll updateBook={this.updateBook} books={this.state.books} />
+              )} />)
               :
-              (<p>loading...</p>)
+              (<p>Go and read a book while I'm loading...</p>)
           )
         }
         <div>
+        </div>
 
-        </div>
-        <div className="open-search">
+        <Link to='/add' className="open-search">
           <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-        </div>
+        </Link>
       </div>)
   }
 }
