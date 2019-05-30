@@ -29,16 +29,6 @@ class BooksApp extends React.Component {
     this.setState({ showSearchPage: false });
   }
 
-  // updateBook = (book, shelf) => {
-  //   if (shelf === book.shelf) return;
-
-  //   BooksAPI.update(book, shelf)
-  //     .then(() => {
-  //       BooksAPI.getAll()
-  //         .then(books => this.setState({ books }))
-  //     });
-  // }
-
   updateBook = async (book, shelf) => {
     if (shelf === book.shelf) return;
 

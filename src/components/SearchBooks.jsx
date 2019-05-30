@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchTerms from './SearchTerms';
+import * as BooksAPI from '../BooksAPI';
 import { Link } from 'react-router-dom';
 
 
