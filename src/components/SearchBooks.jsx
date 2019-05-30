@@ -12,6 +12,7 @@ class SearchBooks extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -20,7 +21,7 @@ class SearchBooks extends React.Component {
             <input type="text" placeholder="Search by title or author" />
           </div>
         </div>
-        <SearchTerms />
+        <SearchTerms booksFound={this.props.booksFound} searchBooks={this.props.searchBooks} />
         <div className="search-books-results">
           <ol className="books-grid"></ol>
         </div>

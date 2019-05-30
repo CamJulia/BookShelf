@@ -2,7 +2,7 @@
 import React from 'react';
 import * as BooksAPI from '../BooksAPI';
 import BookInfo from './BookInfo';
-import BooksFound from './BooksFound';
+import BookSection from './BookSection';
 
 const searchTerms = [
   "Android",
@@ -86,18 +86,22 @@ const searchTerms = [
   "iOS"
 ];
 
-const terms = searchTerms.map((term) =>
-  <button key={term} className='search-term' onClick={() => BooksAPI.search()}>{term}</button>
-);
-
 class SearchTerms extends React.Component {
   render() {
+    console.log(this.props)
     return (
       <div>
         <div className='search-terms'>
-          {terms}
+          {searchTerms.map((term) =>
+            <button
+              key={term}
+              className='search-term'
+              onClick={() => { this.props.searchBooks(term) }}
+            >
+              {term}
+            </button>)}
         </div>
-        <BooksFound />
+        <BookSection books={this.props.booksFound} updateBook={this.props.updateBook} name="BOOKS FOUND" />
       </div>
     )
   }

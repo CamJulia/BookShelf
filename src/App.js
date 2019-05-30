@@ -11,6 +11,7 @@ class BooksApp extends React.Component {
     super();
     this.state = {
       books: [],
+      booksFound: [],
       /**
        * TODO: Instead of using this state variable to keep track of which page
        * we're on, use the URL in the browser's address bar. This will ensure that
@@ -23,6 +24,10 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll().then(books => this.setState({ books }));
+  }
+
+  searchBooks = (term) => {
+    BooksAPI.search(term).then(booksFound => this.setState({ booksFound }));
   }
 
   closeSearch = () => {
@@ -43,7 +48,7 @@ class BooksApp extends React.Component {
       <div className="app">
         {this.state.showSearchPage ? (
           <Route exact path='/add' render={() => (
-            <SearchBooks updateBook={this.updateBook} closeSearch={this.closeSearch} />
+            <SearchBooks updateBook={this.updateBook} booksFound={this.state.booksFound} searchBooks={this.searchBooks} closeSearch={this.closeSearch} />
           )} />) : (
             this.state.books.length ? (
               <Route exact path='/' render={() => (
