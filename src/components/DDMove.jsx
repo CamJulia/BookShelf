@@ -12,7 +12,7 @@ class DDMove extends React.Component {
   render() {
     return (
       <div className="book-shelf-changer">
-        <select defaultValue={this.props.book.shelf} onChange={this.change}>
+        <select defaultValue={this.props.book.shelf || 'move'} onChange={this.change}>
           <option value="move" disabled>
             Move to...
           </option>
