@@ -21,7 +21,7 @@ class SearchBooks extends React.Component {
             <input type="text" placeholder="Search by title or author" />
           </div>
         </div>
-        <SearchTerms booksFound={this.props.booksFound} searchBooks={this.props.searchBooks} />
+        <SearchTerms updateBook={this.props.updateBook} booksFound={this.props.booksFound} searchBooks={this.props.searchBooks} />
         <div className="search-books-results">
           <ol className="books-grid"></ol>
         </div>
