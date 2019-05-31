@@ -61,9 +61,9 @@ class BooksApp extends React.Component {
         <div>
         </div>
 
-        <Link to='/add' className="open-search">
+        {this.state.showSearchPage || <Link to='/add' className="open-search">
           <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-        </Link>
+        </Link>}
       </div>)
   }
 }
