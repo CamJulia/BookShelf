@@ -101,7 +101,6 @@ class SearchTerms extends React.Component {
               {term}
             </button>)}
         </div>
-        <BookSection books={this.props.booksFound} updateBook={this.props.updateBook} name="BOOKS FOUND" />
       </div>
     )
   }
