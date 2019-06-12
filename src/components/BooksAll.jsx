@@ -1,6 +1,5 @@
 import React from 'react';
 import BookSection from './BookSection';
-// import { Link } from 'react-router-dom'
 
 class BooksAll extends React.Component {
 

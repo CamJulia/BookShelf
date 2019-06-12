@@ -21,14 +21,27 @@ class SearchBooks extends React.Component {
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <Link exact to='/'><button className="close-search" onClick={this.props.closeSearch}>Close</button></Link>
+          <Link exact to='/'>
+            <button className="close-search" onClick={this.props.closeSearch}>Close</button>
+          </Link>
           <div className="search-books-input-wrapper">
             <input type="text" placeholder="Search by title or author"
               onChange={this.getBooks} />
           </div>
         </div>
         <SearchTerms updateBook={this.props.updateBook} booksFound={this.props.booksFound} searchBooks={this.props.searchBooks} />
-        <BookSection books={this.props.booksFound} updateBook={this.props.updateBook} name="BOOKS FOUND" />
+        {this.props.booksFound === undefined ?
+          <div>
+            <h2>Sorry. No books found!</h2>
+            <p>Search for an <b>author or title</b> or pick a <b>search term</b> to find some new books!</p>
+          </div> :
+          (this.props.booksFound.length > 0 ?
+            <BookSection books={this.props.booksFound} updateBook={this.props.updateBook} name="BOOKS FOUND" /> :
+            <div>
+              <h2>Sorry. No books found!</h2>
+              <p>Search for an <b>author or title</b> or pick a <b>search term</b> to find some new books!</p>
+            </div>
+          )}
       </div>
     )
   }
