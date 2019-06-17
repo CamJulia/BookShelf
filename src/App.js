@@ -3,8 +3,7 @@ import './App.css'
 import SearchBooks from './components/SearchBooks';
 import BooksAll from './components/BooksAll.jsx';
 import * as BooksAPI from './BooksAPI';
-import { Link } from 'react-router-dom';
-import { Route } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 class BooksApp extends React.Component {
   constructor() {
@@ -27,7 +26,18 @@ class BooksApp extends React.Component {
   }
 
   searchBooks = (term) => {
-    BooksAPI.search(term).then(booksFound => this.setState({ booksFound }));
+    BooksAPI.search(term).then(booksFound => {
+      const filteredBooks = booksFound.filter(book => {
+        const found = this.state.books.find(shelvedBook => {
+          return shelvedBook.id === book.id;
+        });
+
+        if (found) return false;
+        return true;
+      });
+
+      this.setState({ booksFound: filteredBooks });
+    });
   }
 
   closeSearch = () => {
@@ -37,10 +47,11 @@ class BooksApp extends React.Component {
   updateBook = async (book, shelf) => {
     if (shelf === book.shelf) return;
 
-    await BooksAPI.update(book, shelf)
-
-    const books = await BooksAPI.getAll();
-    this.setState({ books });
+    BooksAPI.update(book, shelf).then(() => {
+      BooksAPI.getAll().then((books) => {
+        this.setState({ books });
+      })
+    });
   }
 
   render() {
