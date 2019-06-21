@@ -11,13 +11,6 @@ class BooksApp extends React.Component {
     this.state = {
       books: [],
       booksFound: [],
-      /**
-       * TODO: Instead of using this state variable to keep track of which page
-       * we're on, use the URL in the browser's address bar. This will ensure that
-       * users can use the browser's back and forward buttons to navigate between
-       * pages, as well as provide a good URL they can bookmark and share.
-       */
-      showSearchPage: false
     }
   }
 
@@ -40,10 +33,6 @@ class BooksApp extends React.Component {
     });
   }
 
-  closeSearch = () => {
-    this.setState({ showSearchPage: false });
-  }
-
   updateBook = async (book, shelf) => {
     if (shelf === book.shelf) return;
 
@@ -57,26 +46,22 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <Route exact path='/add' render={() => (
-            <SearchBooks updateBook={this.updateBook} booksFound={this.state.booksFound} searchBooks={this.searchBooks} closeSearch={this.closeSearch} />
-          )} />) : (
-            this.state.books.length ? (
-              <Route exact path='/' render={() => (
-                <BooksAll updateBook={this.updateBook} books={this.state.books} />
-              )} />)
-              :
-              (<p>Go and read a book while I'm loading...</p>)
-          )
-        }
-        <div>
-        </div>
 
-        {this.state.showSearchPage || <Link to='/add' className="open-search">
-          <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-        </Link>}
+        <Route exact path='/search' render={() => (
+          <SearchBooks updateBook={this.updateBook} booksFound={this.state.booksFound} searchBooks={this.searchBooks} />
+        )} />
+
+        <Route exact path='/' render={() => (
+          <div>
+            <BooksAll updateBook={this.updateBook} books={this.state.books} />
+            <Link to='/search' className='open-search'>
+              <button > Add a book</button>
+            </Link>
+          </div>
+        )
+        } />
       </div>)
   }
 }
 
-export default BooksApp;
+export default BooksApp
