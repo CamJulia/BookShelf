@@ -9,7 +9,7 @@ class BookInfo extends React.Component {
     const bookCover = this.props.book.imageLinks && this.props.book.imageLinks.thumbnail ? this.props.book.imageLinks.thumbnail : defaultCover;
     return (
       <li>
-        <div className="book">
+        <div className="book" key={this.props.book.id} >
           <div className="book-top">
             <div className="book-cover"
               style={{
